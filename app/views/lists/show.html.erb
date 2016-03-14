@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<%= @list.name %>
+
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Delete', list_path(@list), :data => {:confirm => "Lets do this?", :method => "delete"} %> |
+
+
+<% if @list.tasks.any? %>
+<ul>
+  <% @list.tasks.each do |task| %>
+    <li>
+      <%= link_to task.description, edit_list_task_path(@list, task) %>
+<%= link_to 'Delete', list_task_path(@list, task), :data => {:confirm => "Lets do this?", :method => "destroy"} %> |
+    </li>
+  <% end %>
+<% else %>
+  <p>Lets add some tasks!</p>
+</ul>
+<% end %>
+
+<%= link_to 'Add New Task', new_list_task_path(@list) %> |
+
+<%= link_to 'Back', lists_path %>
+
+
